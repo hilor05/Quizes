@@ -58,7 +58,7 @@ class Quizes extends React.Component {
       rand,
       flag = 0;
     //user answered correctly
-    if (Quiz[value - 1].answer.toString() == ans) {
+    if (Quiz[value - 1].answer == parseFloat(ans).toPrecision(3)) {
       Quiz[value - 1].correct++;
       Quiz[value - 1].scoreCard[Quiz[value - 1].question][1] = 1;
       flag = 1;
@@ -90,7 +90,8 @@ class Quizes extends React.Component {
         result = rand1 / rand2;
     }
 
-    Quiz[value - 1].answer = result;
+    Quiz[value - 1].answer = result.toPrecision(3);
+    console.log(Quiz[value - 1].answer);
     //generate a new question or display scorecard
     if (Quiz[value - 1].qno > 0) {
       Quiz[value - 1].question = "what is " + rand1 + op + rand2 + "?";
@@ -100,7 +101,10 @@ class Quizes extends React.Component {
         "Thank you, your score is " + Quiz[value - 1].correct;
       Quiz[value - 1].qno--;
     }
-    Quiz[value - 1].scoreCard[Quiz[value - 1].question] = [result, flag];
+    Quiz[value - 1].scoreCard[Quiz[value - 1].question] = [
+      result.toPrecision(3),
+      flag
+    ];
     this.setState(Quiz);
   }
   render() {

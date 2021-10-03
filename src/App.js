@@ -15,6 +15,14 @@ class App extends React.Component {
           >
             <h1 style={{ color: "#008CBA" }}>Happy Quizzing!</h1>
             <Quizes />
+            <p style={{ fontSize: "10px" }}>
+              *Note: make sure to round up to 3 decimal places for large
+              floating values
+            </p>
+            <p style={{ fontSize: "10px" }}>
+              **Note: enter operators (space seperated) among ' + ', ' - ', ' /
+              ' ,' * ' only (default: all operators)
+            </p>
           </div>
         }
       </div>
