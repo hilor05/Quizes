@@ -54,12 +54,9 @@ class Quizbox extends React.Component {
   }
   renderScoreCard() {
     if (this.props.status < 0) {
-      //console.log(this.props.scoreCard);
       return (
         <div style={{ border: "2px double #008CBA", margin: "auto" }}>
           {Object.keys(this.props.scoreCard).map(function (index, i) {
-            //console.log(i);
-            //console.log(index);
             if (i < Object.keys(this.props.scoreCard).length - 1 && i > 0) {
               return (
                 <p key={i}>
@@ -70,7 +67,6 @@ class Quizbox extends React.Component {
                         this.props.scoreCard[index][1] == 0 ? "red" : "green"
                     }}
                   >
-                    {console.log(index)}
                     Answer: {this.props.scoreCard[index][0]}
                   </span>
                 </p>

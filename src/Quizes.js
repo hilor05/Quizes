@@ -37,6 +37,7 @@ class Quizes extends React.Component {
   }
   generateRandom(value, ans, max, op) {
     let Quiz = this.state.Quiz;
+    // reset to start quiz ended
     if (Quiz[value - 1].qno < 0) {
       Quiz[value - 1]["question"] = "start the quiz?";
       Quiz[value - 1]["answer"] = 1.604;
@@ -56,7 +57,7 @@ class Quizes extends React.Component {
       rand2 = 1 + Math.floor(Math.random() * (max - 1)),
       rand,
       flag = 0;
-    //console.log(Quiz[value - 1].scoreCard);
+    //user answered correctly
     if (Quiz[value - 1].answer.toString() == ans) {
       Quiz[value - 1].correct++;
       Quiz[value - 1].scoreCard[Quiz[value - 1].question][1] = 1;
@@ -64,14 +65,16 @@ class Quizes extends React.Component {
     } else {
       Quiz[value - 1].scoreCard[Quiz[value - 1].question][1] = 0;
     }
+    //landing page
     if (Quiz[value - 1].answer == 1.604) {
-      // check if it is the landing page
       Quiz[value - 1].placeholder = "enter your answer";
       if (ans != "NULL") Quiz[value - 1].qno = parseInt(ans);
     }
-    rand = Math.random() * (4 - 0);
-    const a = ["+", "-", "*", "/"];
-    if (op == "") op = a[Math.floor(rand)];
+    //generate a random operator from list provided by user
+    let a = ["+", "-", "*", "/"];
+    a = op == "" ? a : op.split(" ");
+    rand = Math.random() * (a.length - 0);
+    op = a[Math.floor(rand)];
     var result;
     switch (op) {
       case "+":
@@ -88,6 +91,7 @@ class Quizes extends React.Component {
     }
 
     Quiz[value - 1].answer = result;
+    //generate a new question or display scorecard
     if (Quiz[value - 1].qno > 0) {
       Quiz[value - 1].question = "what is " + rand1 + op + rand2 + "?";
       Quiz[value - 1].qno--;
